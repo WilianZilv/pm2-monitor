@@ -1,0 +1,9 @@
+main {
+	display: flex;
+	overflow: hidden;
+}
+
+* {
+	font-family: "Open Sans", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}

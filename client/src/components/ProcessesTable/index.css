@@ -1,0 +1,51 @@
+.processes-table-container {
+	padding: 0 16px;
+}
+
+.processes-table-container table {
+	border: 1px solid rgba(0, 0, 0, 0.25);
+	border-spacing: 0;
+	border-collapse: collapse;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.processes-table-container tr {
+	border: none;
+}
+
+.processes-table-container td {
+	margin: 0;
+	padding: 4px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-left: 1px solid rgba(0, 0, 0, 0.25);
+	border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+.processes-table-container th {
+	margin: 0;
+	padding: 4px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-left: 1px solid rgba(0, 0, 0, 0.25);
+	border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.dot {
+	height: 12px;
+	width: 12px;
+	background-color: tomato;
+	border-radius: 50%;
+	display: inline-block;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.online {
+	background-color: limegreen;
+}
+
+.status-col {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+}

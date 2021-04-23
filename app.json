@@ -1,0 +1,8 @@
+{
+	"apps": [
+		{
+			"name": "RPS Monitor",
+			"script": "server.js"
+		}
+	]
+}
