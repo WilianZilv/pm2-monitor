@@ -55,14 +55,10 @@ function App() {
 		);
 	}, []);
 
-	const logs = useMemo(() => {
-		return ologs;
-	}, [ologs, ids]);
-
 	const filteredLogs = useMemo(() => {
-		if (!ids.length) return logs;
-		return logs.filter((x) => ids.includes(x.pid));
-	}, [logs, ids]);
+		if (!ids.length) return ologs;
+		return ologs.filter((x) => ids.includes(x.pid));
+	}, [ologs, ids]);
 
 	function onFilter(id) {
 		setids((ids) => {
