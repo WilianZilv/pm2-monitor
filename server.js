@@ -26,15 +26,12 @@ pm2.events.on("log", (data) => {
 	const process = processes[data.pid];
 
 	if (!process) {
-		console.log(processes);
-		console.log(data);
 		return;
 	}
 	data = { ...data };
 	data.pname = process.name;
 	data.time = new Date().toLocaleTimeString();
 	data.timestamp = Date.now();
-	console.log("log", data);
 
 	sendDataToUsers("log", data);
 });
