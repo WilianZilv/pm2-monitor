@@ -6,13 +6,31 @@ import socketio from "./services/socketio";
 import "./App.css";
 
 function handleLog(logs, log) {
-	logs = [log, ...logs];
+	let merged = false;
+	logs = logs.map((x) => {
+		x = { ...x };
+		if (x.pid === log.pid && x.channel === log.channel) {
+			if (x.timestamp + 2500 >= log.timestamp) {
+				if (x.data.split("\n").length <= 10) {
+					log = { ...log };
+					log.data += x.data;
+					x = log;
+					merged = true;
+				}
+			}
+		}
+
+		return x;
+	});
+
+	if (!merged) logs.unshift(log);
+
 	const { out, err } = logs
 		.filter((x) => x.pid === log.pid)
 		.reduce(
 			(data, item) => {
 				data[item.channel].push(item);
-				data[item.channel] = data[item.channel].slice(0, 50);
+				data[item.channel] = data[item.channel].slice(0, 5);
 				return data;
 			},
 			{ out: [], err: [] }
@@ -20,47 +38,57 @@ function handleLog(logs, log) {
 
 	logs = logs.filter((x) => x.pid !== log.pid);
 
-	logs = [...out, ...err, ...logs].sort((a, b) => b.timestamp - a.timestamp);
+	logs = [...out, ...err, ...logs].sort((a, b) => a.timestamp - b.timestamp);
 
 	return logs;
 }
 
 function App() {
 	const [processes, setProcesses] = useState([]);
-	const [logs, setLogs] = useState([]);
-	const [pids, setPids] = useState([]);
+	const [ologs, setoLogs] = useState([]);
+	const [ids, setids] = useState([]);
 
 	useEffect(() => {
 		socketio.on("processes", setProcesses);
 		socketio.on("log", (data) =>
-			setLogs((state) => handleLog(state, data))
+			setoLogs((state) => handleLog(state, data))
 		);
 	}, []);
 
+	const logs = useMemo(() => {
+		return ologs;
+	}, [ologs, ids]);
+
 	const filteredLogs = useMemo(() => {
-		if (!pids.length) return logs;
+		if (!ids.length) return logs;
+		return logs.filter((x) => ids.includes(x.pid));
+	}, [logs, ids]);
 
-		return logs.filter((x) => pids.includes(x.pid));
-	}, [logs, pids]);
-
-	function onFilter(pid) {
-		setPids((pids) => {
-			if (pids.includes(pid)) {
-				pids = pids.filter((x) => x !== pid);
+	function onFilter(id) {
+		setids((ids) => {
+			if (ids.includes(id)) {
+				ids = ids.filter((x) => x !== id);
 			} else {
-				pids = [pid, ...pids];
+				ids = [id, ...ids];
 			}
 
-			return pids;
+			return ids;
 		});
 	}
 
 	return (
-		<main>
-			<ProcessesTable data={processes} pids={pids} onFilter={onFilter} />
+		<>
+			<main>
+				<ProcessesTable
+					data={processes}
+					ids={ids}
+					onFilter={onFilter}
+				/>
 
-			<ProcessLogs data={filteredLogs} pids={pids} />
-		</main>
+				<ProcessLogs data={filteredLogs} ids={ids} />
+			</main>
+			<footer></footer>
+		</>
 	);
 }
 

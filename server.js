@@ -18,6 +18,10 @@ function sendDataToUsers(event, data) {
 
 pm2.events.on("processes", (data) => sendDataToUsers("processes", data));
 pm2.events.on("log", (data) => {
+	if (data.data === "\r\n") return;
+	if (!data.data.endsWith("\r\n")) {
+		data.data += "\r\n";
+	}
 	const processes = pm2.list();
 	const process = processes[data.pid];
 
@@ -27,10 +31,10 @@ pm2.events.on("log", (data) => {
 		return;
 	}
 	data = { ...data };
-	data.pid = process.pid;
 	data.pname = process.name;
 	data.time = new Date().toLocaleTimeString();
 	data.timestamp = Date.now();
+	console.log("log", data);
 
 	sendDataToUsers("log", data);
 });

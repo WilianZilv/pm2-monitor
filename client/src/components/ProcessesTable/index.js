@@ -3,8 +3,8 @@ import Table from "../Table";
 import CJSON from "circular-json";
 import "./index.css";
 
-const makeColumns = ({ pids, onFilter }) => [
-	{ Header: "PID", accessor: "pid" },
+const makeColumns = ({ ids, onFilter }) => [
+	{ Header: "ID", accessor: "pm_id" },
 	{
 		Header: "Nome",
 		accessor: "name",
@@ -34,16 +34,17 @@ const makeColumns = ({ pids, onFilter }) => [
 		Header: "Logs",
 		Cell: ({ row }) => (
 			<input
+				className="checkbox"
 				type="checkbox"
-				checked={pids.includes(row.values.pid)}
-				onChange={() => onFilter(row.values.pid)}
+				checked={ids.includes(row.values.pm_id)}
+				onChange={() => onFilter(row.values.pm_id)}
 			/>
 		),
 	},
 ];
 
-export default function ProcessesTable({ data, pids, onFilter }) {
-	const columns = useMemo(() => makeColumns({ pids, onFilter }), [pids]);
+export default function ProcessesTable({ data, ids, onFilter }) {
+	const columns = useMemo(() => makeColumns({ ids, onFilter }), [ids]);
 	return (
 		<div className="processes-table-container">
 			<h1>Processos</h1>

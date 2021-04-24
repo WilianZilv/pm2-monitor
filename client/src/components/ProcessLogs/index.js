@@ -24,6 +24,12 @@ export default function ProcessLogs({ data }) {
 
 		return logs;
 	}, [data]);
+
+	useEffect(() => {
+		document
+			.getElementsByClassName("process-logs-list")[0]
+			.scrollIntoView();
+	}, [logs]);
 	return (
 		<div className="process-logs-container">
 			<h1>Logs</h1>
