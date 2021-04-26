@@ -4,7 +4,6 @@ main {
 	height: 100%;
 }
 
-* {
-	font-family: "Open Sans", sans-serif;
-	-webkit-font-smoothing: antialiased;
+footer {
+	height: 32px;
 }
