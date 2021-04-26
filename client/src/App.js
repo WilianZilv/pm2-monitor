@@ -10,10 +10,11 @@ function handleLog(logs, log) {
 	logs = logs.map((x) => {
 		x = { ...x };
 		if (x.pid === log.pid && x.channel === log.channel) {
-			if (x.timestamp + 2500 >= log.timestamp) {
-				if (x.data.split("\n").length <= 10) {
+			if (x.timestamp + 5000 >= log.timestamp) {
+				if (x.data.split("\n").length <= 32) {
 					log = { ...log };
-					log.data += x.data;
+					log.data = x.data + log.data;
+					log.timestamp = x.timestamp;
 					x = log;
 					merged = true;
 				}
@@ -30,7 +31,7 @@ function handleLog(logs, log) {
 		.reduce(
 			(data, item) => {
 				data[item.channel].push(item);
-				data[item.channel] = data[item.channel].slice(0, 5);
+				data[item.channel] = data[item.channel].slice(0, 150);
 				return data;
 			},
 			{ out: [], err: [] }

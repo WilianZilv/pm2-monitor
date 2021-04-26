@@ -13,11 +13,17 @@ const makeColumns = ({ ids, onFilter }) => [
 		Header: "RAM",
 		accessor: "monit.memory",
 		Cell: ({ value }) => (value / 1e6).toFixed(1) + "MB",
+		style: {
+			width: 84,
+		},
 	},
 	{
 		Header: "CPU",
 		accessor: "monit.cpu",
 		Cell: ({ value }) => String(value) + " %",
+		style: {
+			width: 64,
+		},
 	},
 	{
 		Header: "Status",
