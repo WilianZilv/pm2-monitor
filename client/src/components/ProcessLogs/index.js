@@ -30,8 +30,8 @@ export default function ProcessLogs({ data }) {
 	const [autoScroll, setAutoScroll] = useState(true);
 
 	const { out, err } = useMemo(() => {
-		const out = data.filter((x) => x.channel === "out").slice(0, 150);
-		const err = data.filter((x) => x.channel === "err").slice(0, 150);
+		const out = data.filter((x) => x.channel === "out");
+		const err = data.filter((x) => x.channel === "err");
 		return { out, err };
 	}, [data]);
 

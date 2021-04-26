@@ -31,7 +31,7 @@ function handleLog(logs, log) {
 		.reduce(
 			(data, item) => {
 				data[item.channel].push(item);
-				data[item.channel] = data[item.channel].slice(0, 150);
+				data[item.channel] = data[item.channel].slice(0, 100);
 				return data;
 			},
 			{ out: [], err: [] }
