@@ -45,6 +45,13 @@ io.on("connection", (socket) => {
 		console.log("Disconnected:", reason);
 		delete users[socket.id];
 	});
+
+	socket.on('stop', pm_id => {
+		pm2.pm2.stop(pm_id)
+	})
+	socket.on('restart', pm_id => {
+		pm2.pm2.restart(pm_id)
+	})
 });
 
 server.listen(80, () => {
