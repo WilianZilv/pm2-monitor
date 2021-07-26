@@ -18,10 +18,11 @@ function sendDataToUsers(event, data) {
 
 pm2.events.on("processes", (data) => sendDataToUsers("processes", data));
 pm2.events.on("log", (data) => {
-	if (data.data === "\r\n") return;
-	if (!data.data.endsWith("\r\n")) {
-		data.data += "\r\n";
-	}
+
+	data.data = data.data.trim()
+	if(!data.data.length) return
+	data.data = data.data + '\n'
+
 	const processes = pm2.list();
 	const process = processes[data.pid];
 
