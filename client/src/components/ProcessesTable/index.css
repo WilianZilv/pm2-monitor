@@ -3,6 +3,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+	
 }
 
 .processes-table-container table {
@@ -11,6 +12,8 @@
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
 		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+	width: 100%;
+
 }
 
 .processes-table-container tbody {
@@ -43,8 +46,8 @@
 }
 
 .dot {
-	height: 8px;
-	width: 8px;
+	height: 12px;
+	width: 12px;
 	background-color: tomato;
 	border-radius: 50%;
 	display: inline-block;

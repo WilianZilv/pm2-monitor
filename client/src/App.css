@@ -1,8 +1,12 @@
 main {
 	display: flex;
 	overflow: hidden;
-	height: 100%;
-	font-smooth: 2em;
+}
+
+.main-div {
+	display: flex;
+	flex-direction: column;
+	width: 650px;
 }
 
 * {

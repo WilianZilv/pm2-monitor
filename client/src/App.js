@@ -72,7 +72,7 @@ function App() {
 	return (
 		<>
 			<main>
-				<div>
+				<div class="main-div">
 					<Terminal />
 					<ProcessesTable
 						data={processes}
