@@ -70,7 +70,7 @@ function App() {
 		logs = new_logs.sort((a, b) => a.timestamp - b.timestamp);
 
 		setData(logs);
-	}, [ologs]);
+	}, [ologs, ids]);
 
 	return (
 		<>
