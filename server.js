@@ -35,7 +35,6 @@ function startTerminal() {
 	}
 
 	cmd.stdout.on("data", (data) => {
-		console.log(data.toString("utf8"));
 		sendDataToUsers("terminalData", String(data).split("\n"));
 	});
 	cmd.stderr.on("data", (data) => {
