@@ -3,6 +3,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
+
 }
 
 .processes-table-container table {
@@ -12,6 +13,8 @@
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
 		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 	width: 100%;
+	background-color: rgb(40, 42, 54);
+
 
 }
 
@@ -37,23 +40,48 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 	border-left: 1px solid rgba(0, 0, 0, 0.25);
 	border-right: 1px solid rgba(0, 0, 0, 0.25);
+	background-color: rgb(40, 42, 54);
+
+}
+
+.process-table-button {
+	background-color: rgb(33, 34, 44);
+	color: whitesmoke;
+	border-radius: 4px;
+}
+
+.process-table-button:hover {
+	color: white;
+	background-color: rgb(56, 57, 66);
+
 }
 
 .checkbox {
 	width: 16px;
 	height: 16px;
+
 }
 
 .dot {
 	height: 12px;
 	width: 12px;
-	background-color: tomato;
+	background-color: gray;
 	border-radius: 50%;
 	display: inline-block;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.online {
+.dot-errored {
+	background-color: rgb(170, 0, 0);
+
+}
+
+.dot-stopped {
+
+	background-color: tomato;
+}
+
+.dot-online {
 	background-color: limegreen;
 }
 

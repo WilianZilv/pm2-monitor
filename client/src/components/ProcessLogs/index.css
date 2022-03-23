@@ -15,7 +15,10 @@
 	flex: 1;
 	height: 100%;
 	overflow: hidden;
-	box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 8px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+	background-color: rgb(40, 42, 54);
+	
+	border-radius: 4px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .process-logs-list {
@@ -23,12 +26,14 @@
 	height: 100%;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	border: 1px solid rgba(0, 0, 0, 0.25);
+
 }
 
 .process-logs-item {
 	padding: 4px;
 	padding-left: 8px;
-	color: #3F3F44;
+	color: whitesmoke;
 	white-space: pre-wrap;
 }
 
@@ -49,6 +54,15 @@
 }
 .err {
 	color: #F38900;
+}
+
+.log-out {
+	color: #ffffff;
+
+
+}
+.log-err {
+	color: #ffafaf;
 }
 
 .process-logs-item-divider-out {

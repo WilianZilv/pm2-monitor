@@ -1,6 +1,8 @@
 * {
 	font-family: monospace;
 	-webkit-font-smoothing: antialiased;
+	color: whitesmoke;
+
 }
 
 #root {
@@ -12,12 +14,34 @@
 
 body {
 	margin: 0;
-	background-color: whitesmoke;
+	background-color: rgb(33, 34, 44);
 }
 
 footer {
 	height: 16px;
 }
 
+code {
+	font-size: 12px;
+}
 
 
+/* width */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgba(72, 73, 80);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(83, 83, 86);
+}

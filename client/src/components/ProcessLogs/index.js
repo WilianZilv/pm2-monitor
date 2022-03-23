@@ -20,20 +20,20 @@ function ListItem({ data, isLast, autoScroll }) {
 						<code
 							className={"process-logs-item-info " + data.channel}
 						>
-							[{data.time} - {data.pname}]:{" "}
+							[{data.time} - {data.pname}]
 						</code>
 						<br />
 					</center>
 				)}
 
-				<code>{data.data}</code>
+				<code className={`log-${data.channel}`}>{data.data}</code>
 
 				{data.showInfoBelow && (
 					<center>
 						<code
 							className={"process-logs-item-info " + data.channel}
 						>
-							↑ [{data.time} - {data.pname}] ↑
+							[{data.time} - {data.pname}]
 						</code>
 					</center>
 				)}
@@ -101,7 +101,7 @@ export default function ProcessLogs({ data }) {
 					))}
 				</div>
 
-				<div className="process-logs-list">
+				<div className="process-logs-list err">
 					{err.map((x, i) => (
 						<ListItem
 							isLast={i === err.length - 1}

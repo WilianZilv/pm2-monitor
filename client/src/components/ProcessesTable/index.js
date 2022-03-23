@@ -31,9 +31,7 @@ const makeColumns = ({ ids, onFilter }) => [
 		accessor: "pm2_env.status",
 		Cell: ({ value }) => (
 			<div className={"status-col"}>
-				<span
-					className={`dot ${value === "online" ? value : ""}`}
-				></span>
+				<span className={`dot dot-${value}`}></span>
 			</div>
 		),
 	},
@@ -52,7 +50,10 @@ const makeColumns = ({ ids, onFilter }) => [
 		Header: "",
 		accessor: "stop",
 		Cell: ({ row }) => (
-			<button onClick={() => socketio.emit("stop", row.values.pm_id)}>
+			<button
+				className="process-table-button"
+				onClick={() => socketio.emit("stop", row.values.pm_id)}
+			>
 				Parar
 			</button>
 		),
@@ -61,7 +62,10 @@ const makeColumns = ({ ids, onFilter }) => [
 		Header: "",
 		accessor: "restart",
 		Cell: ({ row }) => (
-			<button onClick={() => socketio.emit("restart", row.values.pm_id)}>
+			<button
+				className="process-table-button"
+				onClick={() => socketio.emit("restart", row.values.pm_id)}
+			>
 				Reiniciar
 			</button>
 		),

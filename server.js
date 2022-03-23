@@ -42,6 +42,8 @@ function startTerminal() {
 	});
 }
 
+startTerminal();
+
 app.use(express.static(__dirname + "/client/build"));
 
 const users = {};
@@ -86,6 +88,15 @@ io.on("connection", (socket) => {
 	});
 	socket.on("restart", (pm_id) => {
 		pm2.pm2.restart(pm_id);
+	});
+
+	socket.on("cmd", (command) => {
+		if (command === "SIGTERM") {
+			startTerminal();
+			return;
+		}
+
+		cmd.stdin.write(command + "\n");
 	});
 });
 
