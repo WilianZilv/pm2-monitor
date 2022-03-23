@@ -1,18 +1,23 @@
-main {
-	display: flex;
-	overflow: hidden;
-}
-
-.main-div {
-	display: flex;
-	flex-direction: column;
-	width: 650px;
-}
-
 * {
 	font-family: monospace;
+	-webkit-font-smoothing: antialiased;
+}
+
+#root {
+	display: flex;
+	height: 100vh;
+	padding-bottom: 16px;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background-color: whitesmoke;
 }
 
 footer {
 	height: 16px;
 }
+
+
+

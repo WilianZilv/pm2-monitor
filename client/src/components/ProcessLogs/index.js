@@ -13,25 +13,77 @@ function ListItem({ data, isLast, autoScroll }) {
 	return (
 		<>
 			<div ref={ref} className={"process-logs-item"}>
-				<code>
-					<code className={"process-logs-item-info " + data.channel}>
-						[{data.time} - {data.pname}]:{" "}
-					</code>
-					{data.data}
-				</code>
+				{!data.hideInfo && (
+					<center
+						className={`process-logs-item-divider-${data.channel}`}
+					>
+						<code
+							className={"process-logs-item-info " + data.channel}
+						>
+							[{data.time} - {data.pname}]:{" "}
+						</code>
+						<br />
+					</center>
+				)}
+
+				<code>{data.data}</code>
+
+				{data.showInfoBelow && (
+					<center>
+						<code
+							className={"process-logs-item-info " + data.channel}
+						>
+							↑ [{data.time} - {data.pname}] ↑
+						</code>
+					</center>
+				)}
 			</div>
 		</>
 	);
 }
 
+function setHideInfo(data) {
+	data = data.reverse();
+
+	for (let i = 0; i < data.length - 1; i++) {
+		if (i > data.length - 1) break;
+
+		const next = data[i + 1];
+		const item = { ...data[i] };
+
+		if (item.pname == next.pname && item.channel === next.channel) {
+			item.hideInfo = true;
+		}
+
+		if (i === 0) {
+			item["showInfoBelow"] = true;
+		}
+
+		data[i] = item;
+	}
+
+	return data.reverse();
+}
+
 export default function ProcessLogs({ data }) {
 	const [autoScroll, setAutoScroll] = useState(true);
+	const [pause, setPause] = useState(false);
 
-	const { out, err } = useMemo(() => {
-		const out = data.filter((x) => x.channel === "out");
-		const err = data.filter((x) => x.channel === "err");
-		return { out, err };
-	}, [data]);
+	const [out, setOut] = useState([]);
+	const [err, setErr] = useState([]);
+
+	useEffect(() => {
+		if (pause) return;
+
+		let out = data.filter((x) => x.channel === "out");
+		let err = data.filter((x) => x.channel === "err");
+
+		out = setHideInfo(out);
+		err = setHideInfo(err);
+
+		setOut(out);
+		setErr(err);
+	}, [data, pause]);
 
 	return (
 		<div className="process-logs-container">
@@ -69,6 +121,15 @@ export default function ProcessLogs({ data }) {
 						onChange={() => setAutoScroll((x) => !x)}
 					/>
 					{"	"}Scroll Automático
+				</label>
+				<label>
+					<input
+						id="autoScroll"
+						type="checkbox"
+						checked={pause}
+						onChange={() => setPause((x) => !x)}
+					/>
+					{"	"}Pausar
 				</label>
 			</div>
 		</div>

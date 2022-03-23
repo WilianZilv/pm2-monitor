@@ -11,6 +11,7 @@ function App() {
 	const [processes, setProcesses] = useState([]);
 	const [ologs, setoLogs] = useState({});
 	const [ids, setids] = useState([]);
+	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		socketio.on("processes", setProcesses);
@@ -40,10 +41,10 @@ function App() {
 		});
 	}
 
-	const data = useMemo(() => {
+	useEffect(() => {
 		let logs = Object.values(ologs);
 
-		if (!logs.length) return [];
+		if (!logs.length) return setData([]);
 
 		logs = logs.reduce((prev, current) => [...prev, ...current]);
 
@@ -60,30 +61,21 @@ function App() {
 				logs_count[key] = 1;
 			}
 
-			if (logs_count[key] > 200) continue;
+			if (logs_count[key] > 150) continue;
 
 			new_logs.push(log);
 
 			logs_count[key] += 1;
 		}
-		return new_logs.sort((a, b) => a.timestamp - b.timestamp);
-	}, [ologs, ids]);
+		logs = new_logs.sort((a, b) => a.timestamp - b.timestamp);
+
+		setData(logs);
+	}, [ologs]);
 
 	return (
 		<>
-			<main>
-				<div class="main-div">
-					<Terminal />
-					<ProcessesTable
-						data={processes}
-						ids={ids}
-						onFilter={onFilter}
-					/>
-				</div>
-
-				<ProcessLogs data={data} ids={ids} />
-			</main>
-			<footer />
+			<ProcessesTable data={processes} ids={ids} onFilter={onFilter} />
+			<ProcessLogs data={data} ids={ids} />
 		</>
 	);
 }
