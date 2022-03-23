@@ -7,8 +7,6 @@
 }
 
 .processes-table-container table {
-	border-spacing: 0;
-	border-collapse: collapse;
 	background-color: white;
 	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
 		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -21,27 +19,6 @@
 .processes-table-container tbody {
 	height: 100%;
 	overflow-y: scroll;
-}
-
-.processes-table-container tr {
-	border: none;
-}
-
-.processes-table-container td {
-	margin: 0;
-	padding: 4px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-	border-left: 1px solid rgba(0, 0, 0, 0.25);
-	border-right: 1px solid rgba(0, 0, 0, 0.25);
-}
-.processes-table-container th {
-	margin: 0;
-	padding: 4px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-	border-left: 1px solid rgba(0, 0, 0, 0.25);
-	border-right: 1px solid rgba(0, 0, 0, 0.25);
-	background-color: rgb(40, 42, 54);
-
 }
 
 .process-table-button {

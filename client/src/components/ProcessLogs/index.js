@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, forwardRef, useRef } from "react";
 import "./index.css";
+import Table from "../Table";
 
 function ListItem({ data, isLast, autoScroll }) {
 	const ref = useRef();

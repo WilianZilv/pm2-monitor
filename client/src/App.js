@@ -42,10 +42,6 @@ function App() {
 	}
 
 	useEffect(() => {
-		console.log(processes);
-	}, [processes]);
-
-	useEffect(() => {
 		let logs = Object.values(ologs);
 
 		if (!logs.length) return setData([]);

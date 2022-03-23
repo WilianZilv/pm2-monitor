@@ -10,6 +10,8 @@
 	height: 100vh;
 	padding-bottom: 16px;
 	box-sizing: border-box;
+	width: 100vw;
+	overflow: hidden;
 }
 
 body {
@@ -29,6 +31,7 @@ code {
 /* width */
 ::-webkit-scrollbar {
 	width: 12px;
+	height: 8px;
 }
 
 /* Track */

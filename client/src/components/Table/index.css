@@ -5,18 +5,37 @@
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+.table-wrapper table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+.table-wrapper  tr {
+	border: none;
+}
+
 .table-wrapper th {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
 	z-index: 1;
-	background: #fff;
 
 	font-family: monospace;
+	background-color: rgb(40, 42, 54);
 
+	margin: 0;
+	padding: 4px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-left: 1px solid rgba(0, 0, 0, 0.25);
+	border-right: 1px solid rgba(0, 0, 0, 0.25);
 	
 }
 
 .table-wrapper td {
+	margin: 0;
+	padding: 4px;
 	font-family: monospace;	
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-left: 1px solid rgba(0, 0, 0, 0.25);
+	border-right: 1px solid rgba(0, 0, 0, 0.25);
 }
