@@ -42,8 +42,6 @@ function startTerminal() {
 	});
 }
 
-startTerminal();
-
 app.use(express.static(__dirname + "/client/build"));
 
 const users = {};
