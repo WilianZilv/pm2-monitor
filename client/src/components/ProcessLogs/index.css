@@ -14,8 +14,7 @@
 	flex: 1;
 	height: 100%;
 	overflow: hidden;
-	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 8px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .process-logs-list {
@@ -26,10 +25,14 @@
 }
 
 .process-logs-item {
-	border-top: solid 1px rgba(255, 255, 255, 0.25);
-	padding: 8px;
-	color: white;
+	padding: 4px;
+	padding-left: 8px;
+	color: #3F3F44;
 	white-space: pre-wrap;
+}
+
+.process-logs-item-info {
+	color: #437BD7;
 }
 
 .process-logs-top-bar {
@@ -41,10 +44,12 @@
 }
 
 .out {
-	background-color: limegreen;
+	color: #437BD7;
+
 }
 .err {
-	background-color: tomato;
+	color: #F38900;
+
 }
 
 code {

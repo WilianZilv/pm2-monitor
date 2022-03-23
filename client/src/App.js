@@ -1,65 +1,33 @@
 import { useState, useEffect, useMemo } from "react";
 import ProcessesTable from "./components/ProcessesTable";
 import ProcessLogs from "./components/ProcessLogs";
+import Terminal from "./components/Terminal";
+
 import socketio from "./services/socketio";
 
 import "./App.css";
 
-function handleLog(logs, log) {
-	let merged = false;
-	logs = logs.map((x) => {
-		x = { ...x };
-		if (x.pid === log.pid && x.channel === log.channel) {
-			if (x.timestamp + 5000 >= log.timestamp) {
-				if (x.data.split("\n").length <= 32) {
-					log = { ...log };
-					log.data = x.data + log.data;
-					log.timestamp = x.timestamp;
-					x = log;
-					merged = true;
-				}
-			}
-		}
-
-		return x;
-	});
-
-	if (!merged) logs.unshift(log);
-
-	const { out, err } = logs
-		.filter((x) => x.pid === log.pid)
-		.reduce(
-			(data, item) => {
-				data[item.channel].push(item);
-				data[item.channel] = data[item.channel].slice(0, 100);
-				return data;
-			},
-			{ out: [], err: [] }
-		);
-
-	logs = logs.filter((x) => x.pid !== log.pid);
-
-	logs = [...out, ...err, ...logs].sort((a, b) => a.timestamp - b.timestamp);
-
-	return logs;
-}
-
 function App() {
 	const [processes, setProcesses] = useState([]);
-	const [ologs, setoLogs] = useState([]);
+	const [ologs, setoLogs] = useState({});
 	const [ids, setids] = useState([]);
 
 	useEffect(() => {
 		socketio.on("processes", setProcesses);
-		socketio.on("log", (data) =>
-			setoLogs((state) => handleLog(state, data))
+		socketio.on("log", (log) =>
+			setoLogs((state) => {
+				const key = log.pname + log.channel;
+				if (!state[key]) state[key] = [];
+
+				state[key] = [...state[key], log]
+					.reverse()
+					.slice(0, 200)
+					.reverse();
+
+				return { ...state };
+			})
 		);
 	}, []);
-
-	const filteredLogs = useMemo(() => {
-		if (!ids.length) return ologs;
-		return ologs.filter((x) => ids.includes(x.pid));
-	}, [ologs, ids]);
 
 	function onFilter(id) {
 		setids((ids) => {
@@ -68,23 +36,54 @@ function App() {
 			} else {
 				ids = [id, ...ids];
 			}
-
 			return ids;
 		});
 	}
 
+	const data = useMemo(() => {
+		let logs = Object.values(ologs);
+
+		if (!logs.length) return [];
+
+		logs = logs.reduce((prev, current) => [...prev, ...current]);
+
+		if (ids.length) {
+			logs = logs.filter((x) => ids.includes(x.pid));
+		}
+
+		let logs_count = {};
+		let new_logs = [];
+
+		for (const log of logs.slice().reverse()) {
+			const key = log.pname + log.channel;
+			if (!logs_count[key]) {
+				logs_count[key] = 1;
+			}
+
+			if (logs_count[key] > 200) continue;
+
+			new_logs.push(log);
+
+			logs_count[key] += 1;
+		}
+		return new_logs.sort((a, b) => a.timestamp - b.timestamp);
+	}, [ologs, ids]);
+
 	return (
 		<>
 			<main>
-				<ProcessesTable
-					data={processes}
-					ids={ids}
-					onFilter={onFilter}
-				/>
+				<div>
+					<Terminal />
+					<ProcessesTable
+						data={processes}
+						ids={ids}
+						onFilter={onFilter}
+					/>
+				</div>
 
-				<ProcessLogs data={filteredLogs} ids={ids} />
+				<ProcessLogs data={data} ids={ids} />
 			</main>
-			<footer></footer>
+			<footer />
 		</>
 	);
 }

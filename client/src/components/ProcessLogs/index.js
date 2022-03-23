@@ -12,15 +12,13 @@ function ListItem({ data, isLast, autoScroll }) {
 
 	return (
 		<>
-			<div ref={ref} className={"process-logs-item " + data.channel}>
-				<div className={"process-logs-top-bar"}>
-					<strong className={"process-logs-item-title"}>
-						{data.pname}:{" "}
-					</strong>
-
-					<strong>{data.time}</strong>
-				</div>
-				<code>{data.data}</code>
+			<div ref={ref} className={"process-logs-item"}>
+				<code>
+					<code className={"process-logs-item-info " + data.channel}>
+						[{data.time} - {data.pname}]:{" "}
+					</code>
+					{data.data}
+				</code>
 			</div>
 		</>
 	);
@@ -37,7 +35,8 @@ export default function ProcessLogs({ data }) {
 
 	return (
 		<div className="process-logs-container">
-			<h1>Logs</h1>
+			<h3>Logs</h3>
+
 			<div className="process-logs-lists-container">
 				<div className="process-logs-list">
 					{out.map((x, i) => (
@@ -49,6 +48,7 @@ export default function ProcessLogs({ data }) {
 						/>
 					))}
 				</div>
+
 				<div className="process-logs-list">
 					{err.map((x, i) => (
 						<ListItem

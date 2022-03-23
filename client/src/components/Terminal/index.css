@@ -1,0 +1,25 @@
+.terminal-container {
+	padding: 0 8px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	max-width: 480px;
+
+}
+
+.terminal-body {
+	padding: 4px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	border-left: 1px solid rgba(0, 0, 0, 0.25);
+	border-right: 1px solid rgba(0, 0, 0, 0.25);
+	height: 200px;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: aliceblue;
+	overflow: auto;
+}
+
+.terminal-input {
+	background-color: rgba(0, 0, 0, 0.8);
+	color: aliceblue;
+	border: none;
+}

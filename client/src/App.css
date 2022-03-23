@@ -2,8 +2,13 @@ main {
 	display: flex;
 	overflow: hidden;
 	height: 100%;
+	font-smooth: 2em;
+}
+
+* {
+	font-family: monospace;
 }
 
 footer {
-	height: 32px;
+	height: 16px;
 }
