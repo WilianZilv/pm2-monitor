@@ -15,26 +15,42 @@ function ListItem({ data, isLast, autoScroll }) {
 		<>
 			<div ref={ref} className={"process-logs-item"}>
 				{!data.hideInfo && (
-					<center
-						className={`process-logs-item-divider-${data.channel}`}
-					>
-						<code
-							className={"process-logs-item-info " + data.channel}
+					<>
+						<center
+							className={`process-logs-item-divider process-logs-item-divider-${data.channel}`}
 						>
-							[{data.time} - {data.pname}]
-						</code>
-						<br />
-					</center>
+							<code
+								className={
+									"process-logs-item-info " + data.channel
+								}
+							>
+								[{data.pname}]
+							</code>
+							<code
+								className={
+									"process-logs-item-info " + data.channel
+								}
+							>
+								[{data.time}]
+							</code>
+						</center>
+					</>
 				)}
 
 				<code className={`log-${data.channel}`}>{data.data}</code>
 
 				{data.showInfoBelow && (
-					<center>
+					<center className="process-logs-item-divider">
 						<code
 							className={"process-logs-item-info " + data.channel}
 						>
-							[{data.time} - {data.pname}]
+							[{data.pname}]
+						</code>
+
+						<code
+							className={"process-logs-item-info " + data.channel}
+						>
+							[{data.time}]
 						</code>
 					</center>
 				)}

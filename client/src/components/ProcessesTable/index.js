@@ -6,46 +6,24 @@ import socketio from "../../services/socketio";
 
 const makeColumns = ({ ids, onFilter }) => [
 	{ Header: "ID", accessor: "pm_id" },
-	{
-		Header: "NAME",
-		accessor: "name",
-	},
+
 	{
 		Header: "RAM",
 		accessor: "monit.memory",
 		Cell: ({ value }) => (value / 1e6).toFixed(1) + "MB",
 		style: {
-			width: 84,
+			width: 70,
 		},
 	},
 	{
 		Header: "CPU",
 		accessor: "monit.cpu",
-		Cell: ({ value }) => String(value) + " %",
+		Cell: ({ value }) => String(value.toFixed(0)) + "%",
 		style: {
-			width: 64,
+			width: 32,
 		},
 	},
-	{
-		Header: "STATUS",
-		accessor: "pm2_env.status",
-		Cell: ({ value }) => (
-			<div className={"status-col"}>
-				<span className={`dot dot-${value}`}></span>
-			</div>
-		),
-	},
-	{
-		Header: "LOGS",
-		Cell: ({ row }) => (
-			<input
-				className="checkbox"
-				type="checkbox"
-				checked={ids.includes(row.values.pm_id)}
-				onChange={() => onFilter(row.values.pm_id)}
-			/>
-		),
-	},
+
 	{
 		Header: "",
 		accessor: "stop",
@@ -68,6 +46,30 @@ const makeColumns = ({ ids, onFilter }) => [
 			>
 				Reiniciar
 			</button>
+		),
+	},
+	{
+		Header: "STATUS",
+		accessor: "pm2_env.status",
+		Cell: ({ value }) => (
+			<div className={"status-col"}>
+				<span className={`dot dot-${value}`}></span>
+			</div>
+		),
+	},
+	{
+		Header: "NAME",
+		accessor: "name",
+	},
+	{
+		Header: "LOGS",
+		Cell: ({ row }) => (
+			<input
+				className="checkbox"
+				type="checkbox"
+				checked={ids.includes(row.values.pm_id)}
+				onChange={() => onFilter(row.values.pm_id)}
+			/>
 		),
 	},
 ];
