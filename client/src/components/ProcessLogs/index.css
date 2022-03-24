@@ -41,7 +41,7 @@
 
 
 .process-logs-item {
-
+	white-space: pre-wrap;
 }
 
 .process-logs-content {
