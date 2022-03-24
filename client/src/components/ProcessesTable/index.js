@@ -20,7 +20,7 @@ const makeColumns = ({ ids, onFilter }) => [
 		accessor: "monit.cpu",
 		Cell: ({ value }) => String(value.toFixed(0)) + "%",
 		style: {
-			minWidth: 32,
+			minWidth: 48,
 		},
 	},
 
