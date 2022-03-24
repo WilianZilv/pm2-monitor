@@ -1,3 +1,4 @@
 import socketio from "socket.io-client";
 
-export default socketio();
+const client = socketio();
+export default client;

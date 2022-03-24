@@ -26,11 +26,14 @@
 	background-color: rgb(48, 50, 63);
 	color: whitesmoke;
 	border-radius: 4px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 24px 0px,
+	rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .process-table-button:hover {
 	color: white;
-	background-color: rgb(56, 57, 66);
+	background-color: rgb(78, 79, 90);
 
 }
 
@@ -46,21 +49,27 @@
 	background-color: gray;
 	border-radius: 50%;
 	display: inline-block;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
 }
 
 .dot-errored {
 	background-color: rgb(170, 0, 0);
+	box-shadow: rgba(184, 119, 119, 0.8) 0px 8px 24px;
+
 
 }
 
 .dot-stopped {
 
 	background-color: orange;
+	box-shadow: rgba(182, 159, 133, 0.8) 0px 8px 24px;
+
 }
 
 .dot-online {
 	background-color: limegreen;
+	box-shadow: rgba(115, 158, 112, 0.8) 0px 8px 24px;
+
 }
 
 .status-col {

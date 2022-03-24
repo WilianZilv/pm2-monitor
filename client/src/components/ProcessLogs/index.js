@@ -11,6 +11,41 @@ function ListItem({ data, isLast, autoScroll }) {
 		ref.current.scrollIntoView({ behaviour: "smooth" });
 	}, [ref, data, isLast, autoScroll]);
 
+	const value = useMemo(() => {
+		try {
+			let json = data.data.trim();
+			if (json.startsWith("{'") || json.startsWith("[{'")) {
+				json = json.replaceAll("'", '"');
+			}
+			json = json.replaceAll("None", "null");
+
+			json = JSON.parse(json);
+
+			let columns = json.reduce(
+				(prev, cur) => [...prev, ...Object.keys(cur)],
+				[]
+			);
+			columns = Array.from(new Set(columns));
+			columns = columns.map((x) => ({
+				Header: x,
+				accessor: x,
+			}));
+
+			return (
+				<>
+					<Table columns={columns} data={json} />
+					<br />
+				</>
+			);
+		} catch (error) {}
+
+		return (
+			<code nowrap className={`log-${data.channel}`}>
+				{data.data}
+			</code>
+		);
+	}, [data]);
+
 	return (
 		<>
 			<div ref={ref} className={"process-logs-item"}>
@@ -36,8 +71,7 @@ function ListItem({ data, isLast, autoScroll }) {
 						</center>
 					</>
 				)}
-
-				<code className={`log-${data.channel}`}>{data.data}</code>
+				{value}
 
 				{data.showInfoBelow && (
 					<center className="process-logs-item-divider">
@@ -129,6 +163,7 @@ export default function ProcessLogs({ data }) {
 					))}
 				</div>
 			</div>
+
 			<div className="process-logs-footer">
 				<label>
 					<input
