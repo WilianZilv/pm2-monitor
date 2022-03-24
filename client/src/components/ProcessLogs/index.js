@@ -17,7 +17,9 @@ function ListItem({ data, isLast, autoScroll }) {
 			if (json.startsWith("{'") || json.startsWith("[{'")) {
 				json = json.replaceAll("'", '"');
 			}
-			json = json.replaceAll("None", "null");
+
+			json = json.replace(/\bNone\b/g, "null");
+			json = json.replace(/\bNaN\b/g, "null");
 
 			json = JSON.parse(json);
 
@@ -39,11 +41,7 @@ function ListItem({ data, isLast, autoScroll }) {
 			);
 		} catch (error) {}
 
-		return (
-			<code nowrap className={`log-${data.channel}`}>
-				{data.data}
-			</code>
-		);
+		return <code className={`log-${data.channel}`}>{data.data}</code>;
 	}, [data]);
 
 	return (

@@ -73,12 +73,9 @@
 
 .log-out {
 	color: #ffffff;
-	white-space: nowrap;
 }
 .log-err {
 	color: #ffafaf;
-	white-space: nowrap;
-
 }
 
 

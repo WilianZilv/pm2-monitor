@@ -12,7 +12,7 @@ const makeColumns = ({ ids, onFilter }) => [
 		accessor: "monit.memory",
 		Cell: ({ value }) => (value / 1e6).toFixed(1) + "MB",
 		style: {
-			width: 70,
+			minWidth: 70,
 		},
 	},
 	{
@@ -20,7 +20,7 @@ const makeColumns = ({ ids, onFilter }) => [
 		accessor: "monit.cpu",
 		Cell: ({ value }) => String(value.toFixed(0)) + "%",
 		style: {
-			width: 32,
+			minWidth: 32,
 		},
 	},
 
