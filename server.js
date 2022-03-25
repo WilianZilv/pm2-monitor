@@ -53,26 +53,14 @@ function sendDataToUsers(event, data) {
 }
 
 pm2.events.on("processes", (data) => sendDataToUsers("processes", data));
-pm2.events.on("log", (data) => {
-	data.data = data.data.trim();
-	if (!data.data.length) return;
-	data.data = data.data + "\n";
-
-	const processes = pm2.list();
-	const process = processes[data.pid];
-
-	if (!process) {
-		return;
-	}
-	data = { ...data };
-	data.pname = process.name;
-	data.time = new Date().toLocaleTimeString();
-	data.timestamp = Date.now();
-	sendDataToUsers("log", data);
+pm2.events.on("logs", (data) => {
+	sendDataToUsers("logs", data);
 });
 
 io.on("connection", (socket) => {
 	socket.emit("processes", pm2.list());
+
+	socket.emit("logs", pm2.getLogs());
 
 	users[socket.id] = socket;
 

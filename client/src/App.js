@@ -15,19 +15,7 @@ function App() {
 
 	useEffect(() => {
 		socketio.on("processes", setProcesses);
-		socketio.on("log", (log) =>
-			setoLogs((state) => {
-				const key = log.pname + log.channel;
-				if (!state[key]) state[key] = [];
-
-				state[key] = [...state[key], log]
-					.reverse()
-					.slice(0, 200)
-					.reverse();
-
-				return { ...state };
-			})
-		);
+		socketio.on("logs", setoLogs);
 	}, []);
 
 	function onFilter(id) {
