@@ -40,22 +40,7 @@ function App() {
 			logs = logs.filter((x) => ids.includes(x.pid));
 		}
 
-		let logs_count = {};
-		let new_logs = [];
-
-		for (const log of logs.slice().reverse()) {
-			const key = log.pname + log.channel;
-			if (!logs_count[key]) {
-				logs_count[key] = 1;
-			}
-
-			if (logs_count[key] > 150) continue;
-
-			new_logs.push(log);
-
-			logs_count[key] += 1;
-		}
-		logs = new_logs.sort((a, b) => a.timestamp - b.timestamp);
+		logs = logs.sort((a, b) => a.timestamp - b.timestamp);
 
 		setData(logs);
 	}, [ologs, ids]);
