@@ -70,9 +70,11 @@ io.on("connection", (socket) => {
 	});
 
 	socket.on("stop", (pm_id) => {
+		console.log("stop", pm_id);
 		pm2.pm2.stop(pm_id);
 	});
 	socket.on("restart", (pm_id) => {
+		console.log("restart", pm_id);
 		pm2.pm2.restart(pm_id);
 	});
 
