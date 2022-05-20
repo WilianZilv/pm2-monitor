@@ -124,8 +124,8 @@ export default function ProcessLogs({ data }) {
 	useEffect(() => {
 		if (pause) return;
 
-		let out = data.filter((x) => x.channel === "out");
-		let err = data.filter((x) => x.channel === "err");
+		let out = data.filter((x) => x.channel === "out").slice(-150);
+		let err = data.filter((x) => x.channel === "err").slice(-150);
 
 		out = setHideInfo(out);
 		err = setHideInfo(err);
