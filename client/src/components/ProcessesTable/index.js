@@ -76,10 +76,11 @@ const makeColumns = ({ ids, onFilter }) => [
 
 export default function ProcessesTable({ data, ids, onFilter }) {
 	const columns = useMemo(() => makeColumns({ ids, onFilter }), [ids]);
+	//console.log(data)
 	return (
 		<div className="processes-table-container">
 			<h3>Processos</h3>
-			<Table columns={columns} data={data}></Table>
+			<Table columns={columns} data={data.sort((a, b) => a.name.localeCompare(b.name))}></Table>
 		</div>
 	);
 }
