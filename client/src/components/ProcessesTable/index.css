@@ -3,8 +3,13 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	
 
+}
+
+.processes-table-container td {
+	max-width: 200px;
+	overflow: auto;
+	justify-content: center;
 }
 
 .processes-table-container table {
@@ -13,7 +18,7 @@
 		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 	width: 100%;
 	background-color: rgb(33, 34, 44);
-	
+
 
 
 }
@@ -30,6 +35,16 @@
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	box-shadow: rgba(0, 0, 0, 0.45) 0px 6px 12px 0px,
 	rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 22px;
+	min-height: 22px;
+}
+
+.process-table-button img {
+	height: 12px;
+	width: 12px;
 }
 
 .process-table-button:hover {
@@ -41,7 +56,6 @@
 .checkbox {
 	width: 16px;
 	height: 16px;
-
 }
 
 .dot {
@@ -64,7 +78,6 @@
 	background-color: rgb(255, 255, 0);
 	box-shadow: rgb(255, 255, 0) 0px 0px 32px, rgba(255, 255, 0, 0.5) 0px 0px 12px;
 
-
 }
 
 .dot-online {
@@ -79,4 +92,5 @@
 	justify-items: center;
 	align-items: center;
 	justify-content: center;
+	width: 22px;
 }
