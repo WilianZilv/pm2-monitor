@@ -7,12 +7,13 @@
 
 
 	padding-left: 16px;
-	
+
 	padding-right: 8px;
 }
 
 .process-logs-lists-container {
 	display: flex;
+	flex-direction: column;
 	height: 100%;
 	overflow: hidden;
 
@@ -35,7 +36,7 @@
 	flex: 1;
 
 	border:  1px solid rgba(0, 0, 0, 0.25);
-	
+
 
 }
 

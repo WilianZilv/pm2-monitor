@@ -7,8 +7,6 @@
 }
 
 .processes-table-container td {
-	max-width: 200px;
-	overflow: auto;
 	justify-content: center;
 }
 
@@ -18,8 +16,6 @@
 		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 	width: 100%;
 	background-color: rgb(33, 34, 44);
-
-
 
 }
 
