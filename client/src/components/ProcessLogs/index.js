@@ -114,6 +114,11 @@ function setHideInfo(data) {
 	return data.reverse();
 }
 
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const vertical = !!urlParams.get("vertical");
+
+
 export default function ProcessLogs({ data }) {
 	const [autoScroll, setAutoScroll] = useState(true);
 	const [pause, setPause] = useState(false);
@@ -134,11 +139,12 @@ export default function ProcessLogs({ data }) {
 		setErr(err);
 	}, [data, pause]);
 
+	const verticalClass = vertical ? " process-logs-list-container-vertical" : ""
 	return (
 		<div className="process-logs-container">
 			<h3>Logs</h3>
 
-			<div className="process-logs-lists-container">
+			<div className={"process-logs-lists-container" + verticalClass}>
 				<div className="process-logs-list">
 					{out.map((x, i) => (
 						<ListItem
