@@ -132,8 +132,8 @@ export default function ProcessLogs({ data, ids }) {
 		let out = data.filter((x) => x.channel === "out");
 		let err = data.filter((x) => x.channel === "err");
 		if (ids.length != 1) {
-			out = out.slice(-20)
-			err = err.slice(-20)
+			out = out.slice(-75)
+			err = err.slice(-75)
 		}
 
 		out = setHideInfo(out);
