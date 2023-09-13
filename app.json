@@ -2,7 +2,10 @@
 	"apps": [
 		{
 			"name": "RPS Monitor",
-			"script": "server.js"
+			"script": "server.js",
+			"env": {
+				"PM2_MONITOR_HIDDEN": true
+			}
 		}
 	]
 }
